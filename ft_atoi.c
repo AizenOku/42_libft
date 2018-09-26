@@ -6,33 +6,45 @@
 /*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 18:15:47 by ihuang            #+#    #+#             */
-/*   Updated: 2018/09/21 20:40:54 by ihuang           ###   ########.fr       */
+/*   Updated: 2018/09/24 18:51:22 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+static int	ft_isspace(int c)
 {
-	long long	ret;
-	int			neg;
+	if (c == '\n' || c == '\t' || c == '\f' || c == '\r' \
+			|| c == '\v' || c == ' ' || c == '+')
+		return (1);
+	return (0);
+}
 
-	neg = 1;
-	ret = 0;
-	while (!ft_isdigit(*str) && *str != '0')
+int			ft_atoi(const char *str)
+{
+	int					isneg;
+	unsigned long long	value;
+
+	isneg = 1;
+	value = 0;
+	while (ft_isspace(*str))
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		if (*str == '-' && ft_isdigit(*(str + 1)))
-		{
-			neg = -1;
-			str++;
-			break ;
-		}
+		if (*str == '-')
+			isneg = -1;
 		str++;
 	}
 	while (*str && ft_isdigit(*str))
 	{
-		ret = ret * 10 + *str - '0';
+		value = value * 10 + *str - '0';
+		if (value >= 9223372036854775807)
+		{
+			if (isneg == -1)
+				return (0);
+			return (-1);
+		}
 		str++;
 	}
-	return (neg * ret);
+	return ((int)isneg * value);
 }

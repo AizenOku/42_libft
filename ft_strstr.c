@@ -6,7 +6,7 @@
 /*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 14:43:02 by ihuang            #+#    #+#             */
-/*   Updated: 2018/09/21 19:22:51 by ihuang           ###   ########.fr       */
+/*   Updated: 2018/09/21 23:41:19 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,4 @@ char		*ft_strstr(const char *haystack, const char *needle)
 	}
 	return (NULL);
 }
+
