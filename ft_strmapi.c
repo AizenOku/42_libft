@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strmpai.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 17:06:54 by ihuang            #+#    #+#             */
-/*   Updated: 2018/10/08 17:39:51 by ihuang           ###   ########.fr       */
+/*   Created: 2018/10/08 11:33:20 by ihuang            #+#    #+#             */
+/*   Updated: 2018/10/08 11:56:38 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		i;
-	int		j;
-	int		n;
+	unsigned int	i;
+	char			*ret;
 
+	ret = NULL;
 	i = 0;
-	j = 0;
-	n = (int)len;
-	while (src[i] && j < n)
+	if (s && f)
 	{
-		dst[j] = src[i];
-		j++;
-		i++;
+		if ((ret = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1))))
+		{
+			while (s[i])
+			{
+				ret[i] = f(i, s[i]);
+				i++;
+			}
+			ret[i] = '\0';
+		}
 	}
-	while (j < n)
-		dst[j++] = '\0';
-	return (dst);
+	return (ret);
 }

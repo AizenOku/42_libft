@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_tabdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 17:06:54 by ihuang            #+#    #+#             */
-/*   Updated: 2018/10/08 17:39:51 by ihuang           ###   ########.fr       */
+/*   Created: 2018/10/23 06:29:15 by ihuang            #+#    #+#             */
+/*   Updated: 2018/10/23 06:31:54 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+void	ft_tabdel(char **tab)
 {
-	int		i;
-	int		j;
-	int		n;
+	unsigned int	i;
 
 	i = 0;
-	j = 0;
-	n = (int)len;
-	while (src[i] && j < n)
-	{
-		dst[j] = src[i];
-		j++;
-		i++;
-	}
-	while (j < n)
-		dst[j++] = '\0';
-	return (dst);
+	while (*(tab + i))
+		ft_strdel(tab + (i++));
+	free(tab);
 }

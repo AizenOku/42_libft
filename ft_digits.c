@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_digits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 17:06:54 by ihuang            #+#    #+#             */
-/*   Updated: 2018/10/08 17:39:51 by ihuang           ###   ########.fr       */
+/*   Created: 2018/10/15 19:52:23 by ihuang            #+#    #+#             */
+/*   Updated: 2018/10/15 19:53:54 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+size_t	ft_digits(int n)
 {
-	int		i;
-	int		j;
-	int		n;
+	unsigned int	isneg;
+	size_t			digits;
 
-	i = 0;
-	j = 0;
-	n = (int)len;
-	while (src[i] && j < n)
+	isneg = 0;
+	digits = 1;
+	if (n == -2147483648)
+		return (11);
+	if (n < 0)
+		isneg = 1;
+	while (n / 10)
 	{
-		dst[j] = src[i];
-		j++;
-		i++;
+		digits++;
+		n /= 10;
 	}
-	while (j < n)
-		dst[j++] = '\0';
-	return (dst);
+	return (isneg + digits);
 }

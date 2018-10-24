@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 17:06:54 by ihuang            #+#    #+#             */
-/*   Updated: 2018/10/08 17:39:51 by ihuang           ###   ########.fr       */
+/*   Created: 2018/10/10 11:03:21 by ihuang            #+#    #+#             */
+/*   Updated: 2018/10/15 19:30:23 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	int		i;
-	int		j;
-	int		n;
+	t_list	*ret;
 
-	i = 0;
-	j = 0;
-	n = (int)len;
-	while (src[i] && j < n)
+	ret = NULL;
+	if ((ret = (t_list*)malloc(sizeof(t_list))))
 	{
-		dst[j] = src[i];
-		j++;
-		i++;
+		if (!content)
+		{
+			ret->content = NULL;
+			ret->content_size = 0;
+		}
+		else
+		{
+			if (!(ret->content = malloc(content_size)))
+				return (NULL);
+			ft_memcpy(ret->content, content, content_size);
+			ret->content_size = content_size;
+		}
+		ret->next = NULL;
 	}
-	while (j < n)
-		dst[j++] = '\0';
-	return (dst);
+	return (ret);
 }

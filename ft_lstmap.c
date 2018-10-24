@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 17:06:54 by ihuang            #+#    #+#             */
-/*   Updated: 2018/10/08 17:39:51 by ihuang           ###   ########.fr       */
+/*   Created: 2018/10/15 18:37:50 by ihuang            #+#    #+#             */
+/*   Updated: 2018/10/15 19:31:51 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	int		i;
-	int		j;
-	int		n;
+	t_list	*start;
+	t_list	*new;
 
-	i = 0;
-	j = 0;
-	n = (int)len;
-	while (src[i] && j < n)
+	start = NULL;
+	new = NULL;
+	if (!lst)
+		return (NULL);
+	while (lst)
 	{
-		dst[j] = src[i];
-		j++;
-		i++;
+		new = f(lst);
+		ft_lstadd(&start, new);
+		lst = lst->next;
 	}
-	while (j < n)
-		dst[j++] = '\0';
-	return (dst);
+	ft_lstrev(&start);
+	return (start);
 }

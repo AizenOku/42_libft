@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 17:06:54 by ihuang            #+#    #+#             */
-/*   Updated: 2018/10/08 17:39:51 by ihuang           ###   ########.fr       */
+/*   Created: 2018/10/08 18:15:46 by ihuang            #+#    #+#             */
+/*   Updated: 2018/10/10 10:22:22 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+void	ft_putnbr(int n)
 {
-	int		i;
-	int		j;
-	int		n;
-
-	i = 0;
-	j = 0;
-	n = (int)len;
-	while (src[i] && j < n)
-	{
-		dst[j] = src[i];
-		j++;
-		i++;
-	}
-	while (j < n)
-		dst[j++] = '\0';
-	return (dst);
+	ft_putnbr_fd(n, 1);
 }

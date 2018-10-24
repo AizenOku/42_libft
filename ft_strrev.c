@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_reverse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 17:06:54 by ihuang            #+#    #+#             */
-/*   Updated: 2018/10/08 17:39:51 by ihuang           ###   ########.fr       */
+/*   Created: 2018/10/15 15:14:55 by ihuang            #+#    #+#             */
+/*   Updated: 2018/10/15 20:55:28 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+void	ft_strrev(char **s)
 {
-	int		i;
-	int		j;
-	int		n;
+	size_t	end;
+	size_t	start;
+	char	temp;
 
-	i = 0;
-	j = 0;
-	n = (int)len;
-	while (src[i] && j < n)
+	end = ft_strlen(*s) - 1;
+	start = 0;
+	temp = 0;
+	while (end > start)
 	{
-		dst[j] = src[i];
-		j++;
-		i++;
+		temp = *(*s + start);
+		*(*s + start) = *(*s + end);
+		*(*s + end) = temp;
+		end--;
+		start++;
 	}
-	while (j < n)
-		dst[j++] = '\0';
-	return (dst);
 }
