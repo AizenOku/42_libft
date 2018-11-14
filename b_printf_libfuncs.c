@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_digits.c                                        :+:      :+:    :+:   */
+/*   prints.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/15 19:52:23 by ihuang            #+#    #+#             */
-/*   Updated: 2018/10/15 19:53:54 by ihuang           ###   ########.fr       */
+/*   Created: 2018/09/13 22:40:34 by ihuang            #+#    #+#             */
+/*   Updated: 2018/11/09 15:09:37 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "b_printf.h"
 
-size_t	ft_digits(int n)
+int		ft_write_len(char c)
 {
-	unsigned int	isneg;
-	size_t			digits;
+	write(1, &c, 1);
+	return (1);
+}
 
-	isneg = 0;
-	digits = 1;
-	if (n == -2147483648)
-		return (11);
-	if (n < 0)
-		isneg = 1;
-	while (n / 10)
-	{
-		digits++;
-		n /= 10;
-	}
-	return (isneg + digits);
+int		ft_putstr_len(char *s)
+{
+	int		len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	write(1, s, len);
+	return (len);
 }
