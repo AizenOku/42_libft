@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihuang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ihuang <ihuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 16:12:58 by ihuang            #+#    #+#             */
-/*   Updated: 2018/11/14 08:43:19 by ihuang           ###   ########.fr       */
+/*   Updated: 2018/12/01 14:43:43 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,14 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_strrev(char **s);
 void				ft_lstrev(t_list **head);
-size_t				ft_digits_base(int nbr, int base);
+size_t				ft_digits_base(long long int nbr, int base);
 size_t				ft_wordcount(const char *s, char c);
 char				*ft_itoa_base(int n, int b);
 void				ft_tabdel(char **tab);
+int					ft_strindex(const char *s, const char c);
+char				*ft_itoa_base_ptr(unsigned long n, int b);
+char				*ft_itoa_base_unsigned(unsigned long long int nbr, \
+int base);
+char				*ft_llitoa(long long int n);
 
 #endif

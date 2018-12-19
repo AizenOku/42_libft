@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa_base_unsigned.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihuang <ihuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 22:19:10 by ihuang            #+#    #+#             */
-/*   Updated: 2018/11/17 10:41:49 by ihuang           ###   ########.fr       */
+/*   Updated: 2018/12/01 14:41:43 by ihuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static void		fill_ptr(char **ptr, long l, int n, int b)
+static int		ft_digits_unsigned(unsigned long long int nbr, int base)
+{
+	int		digits;
+
+	digits = 1;
+	if (nbr == 0)
+		return (digits);
+	while (nbr / (unsigned int)base)
+	{
+		digits++;
+		nbr /= base;
+	}
+	return (digits);
+}
+
+static void		fill_ptr(char **ptr, unsigned long long int n, int b)
 {
 	char	*start;
 	char	*rep;
@@ -26,31 +42,23 @@ static void		fill_ptr(char **ptr, long l, int n, int b)
 		*ptr = ft_strdup("0");
 		return ;
 	}
-	while (l)
+	while (n)
 	{
-		start[i++] = rep[l % b];
-		l /= b;
+		start[i++] = rep[n % b];
+		n /= b;
 	}
-	if (n < 0 && b == 10)
-		start[i++] = '-';
 	start[i] = '\0';
 	ft_strrev(&start);
 }
 
-char			*ft_itoa_base(int n, int b)
+char			*ft_itoa_base_unsigned(unsigned long long int nbr, int base)
 {
-	long	l;
 	char	*ptr;
 	size_t	digits;
 
 	ptr = NULL;
-	l = n;
-	if (n < 0)
-		l = -l;
-	if (n == -2147483648 && b == 10)
-		return ((ptr = ft_strdup("-2147483648")));
-	digits = ft_digits_base(n, b);
+	digits = ft_digits_unsigned(nbr, base);
 	if ((ptr = ft_strnew(digits + 1)))
-		fill_ptr(&ptr, l, n, b);
+		fill_ptr(&ptr, nbr, base);
 	return (ptr);
 }

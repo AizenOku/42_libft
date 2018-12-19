@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ihuang <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: ihuang <ihuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/21 18:39:41 by ihuang            #+#    #+#              #
-#    Updated: 2018/11/14 08:45:12 by ihuang           ###   ########.fr        #
+#    Updated: 2018/11/19 10:26:19 by ihuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c 
 	ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c \
 	ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c \
 	ft_strrev.c ft_lstrev.c ft_digits_base.c ft_wordcount.c ft_itoa_base.c \
-	ft_tabdel.c gnl.c b_printf.c handle.c b_printf_libfuncs.c
+	ft_tabdel.c gnl.c ft_strindex.c ft_itoa_base_ptr.c ft_itoa_base_unsigned.c \
+	ft_llitoa.c
 
 OBJS = ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o ft_memmove.o ft_memchr.o \
 	ft_memcmp.o ft_strlen.o ft_strdup.o ft_strcpy.o ft_strncpy.o ft_strcat.o \
@@ -36,26 +37,28 @@ OBJS = ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o ft_memmove.o ft_memchr.o 
 	ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_lstnew.o \
 	ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lstmap.o \
 	ft_strrev.o ft_lstrev.o ft_digits_base.o ft_wordcount.o ft_itoa_base.o \
-	ft_tabdel.o gnl.o b_printf.o handle.o b_printf_libfuncs.o 
+	ft_tabdel.o gnl.o ft_strindex.o ft_itoa_base_ptr.o ft_itoa_base_unsigned.o \
+	ft_llitoa.o
 
 FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME):
+	@echo "Compiling $(NAME) ..."
 	@gcc $(FLAGS) -c $(SRCS)
 	@ar rc $(NAME) $(OBJS)
-	@echo "Compiled $(NAME)"
+	@echo "Done."
 
 clean:
 	@rm -rf $(OBJS)
 
 fclean: clean
+	@echo "Cleaning $(NAME) ..."
 	@rm -rf $(NAME)
-	@echo "Cleaned $(NAME)"
 
 re: fclean all
 
 norm:
-	@echo "Norminette SRCS and libft.h"
+	@echo "Norminette libft SRCS and libft.h"
 	@norminette $(SRCS) libft.h
